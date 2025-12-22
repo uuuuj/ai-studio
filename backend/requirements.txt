@@ -15,5 +15,9 @@ python-multipart==0.0.6
 # Streamlit
 streamlit==1.40.2
 
+# Database
+pyodbc==5.3.0
+pymssql==2.3.10
+
 # Optional: For additional features
 httpx==0.26.0

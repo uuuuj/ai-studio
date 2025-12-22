@@ -18,6 +18,14 @@ class Settings(BaseSettings):
     APP_NAME: str = "AI Studio Backend"
     DEBUG: bool = True
 
+    # MSSQL Database Configuration
+    MSSQL_SERVER: Optional[str] = None
+    MSSQL_PORT: int = 1433
+    MSSQL_DATABASE: Optional[str] = None
+    MSSQL_USERNAME: Optional[str] = None
+    MSSQL_PASSWORD: Optional[str] = None
+    MSSQL_DRIVER: str = "{ODBC Driver 17 for SQL Server}"
+
     class Config:
         env_file = ".env"
         case_sensitive = True

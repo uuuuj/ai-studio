@@ -9,10 +9,10 @@ from typing import Optional, List
 
 
 class StreamlitService:
-    def __init__(self):
+    def __init__(self) -> None:
         self.process: Optional[subprocess.Popen] = None
-        self.app_file = Path("app.py")
-        self.port = 8501
+        self.app_file: Path = Path("app.py")
+        self.port: int = 8501
 
     def extract_imports(self, code: str) -> List[str]:
         """Extract import statements from code to identify required packages"""
