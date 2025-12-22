@@ -13,7 +13,7 @@ class ChatRequest(BaseModel):
     temperature: Optional[float] = Field(default=0.7, ge=0, le=2, description="Sampling temperature")
     max_tokens: Optional[int] = Field(default=1000, gt=0, description="Maximum tokens to generate")
     stream: Optional[bool] = Field(default=False, description="Whether to stream the response")
-    provider: Optional[str] = Field(default="openai", description="LLM provider (openai, anthropic, etc.)")
+    provider: str = Field(default="openai", description="LLM provider (openai, anthropic, etc.)")
 
 
 class ChatResponse(BaseModel):

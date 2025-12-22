@@ -106,7 +106,7 @@ class StreamlitService:
 
             # Check if process is still running
             if self.process.poll() is not None:
-                stderr = self.process.stderr.read().decode()
+                stderr = self.process.stderr.read().decode() if self.process.stderr else "Unknown error"
                 raise Exception(f"Streamlit failed to start: {stderr}")
 
             response = {
