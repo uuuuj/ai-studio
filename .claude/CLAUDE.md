@@ -177,11 +177,17 @@ build/
 
 ## Development Workflow
 
+### Python Virtual Environment
+- **venv 폴더는 프로젝트 루트 경로(`ai-studio/venv/`)에 위치**
+- backend와 프로젝트 전체에서 이 venv를 공유하여 사용
+
 ### Backend
 ```bash
-cd backend
-python -m venv venv
+# 루트의 venv 활성화
 source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# 백엔드 실행
+cd backend
 pip install -r requirements.txt
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```

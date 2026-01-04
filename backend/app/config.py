@@ -12,7 +12,16 @@ class Settings(BaseSettings):
     PORT: int = 8000
 
     # CORS Configuration
-    CORS_ORIGINS: list = ["http://localhost:3000", "http://localhost:5173"]
+    CORS_ORIGINS: list = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:5175",
+        "http://localhost:5176",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174",
+        "http://127.0.0.1:5175",
+    ]
 
     # Application Settings
     APP_NAME: str = "AI Studio Backend"

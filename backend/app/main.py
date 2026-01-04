@@ -10,11 +10,11 @@ app = FastAPI(
     debug=settings.DEBUG
 )
 
-# Configure CORS
+# Configure CORS - Allow all origins for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.CORS_ORIGINS,
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -27,9 +27,6 @@ app.include_router(database_routes.router)
 
 @app.get("/")
 async def root():
-    """
-    Root endpoint
-    """
     return {
         "message": "AI Studio Backend API",
         "version": "1.0.0",
@@ -40,9 +37,6 @@ async def root():
 
 @app.get("/health")
 async def health():
-    """
-    General health check
-    """
     return {"status": "healthy"}
 
 

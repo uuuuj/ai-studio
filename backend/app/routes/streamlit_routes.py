@@ -33,6 +33,33 @@ async def stop_streamlit():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.post("/save")
+async def save_streamlit_code(request: StreamlitRunRequest):
+    """
+    Save code to app.py without restarting Streamlit.
+    Streamlit's file watcher will detect the change and auto-reload.
+    This enables hot-reloading functionality.
+    """
+    try:
+        # Only save if Streamlit is running
+        status = streamlit_service.status()
+        if not status.get("running"):
+            raise HTTPException(
+                status_code=400,
+                detail="Streamlit is not running. Use /run endpoint first."
+            )
+
+        streamlit_service.save_code(request.code)
+        return {
+            "status": "saved",
+            "message": "Code saved. Streamlit will auto-reload."
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @router.get("/status")
 async def get_status():
     """
