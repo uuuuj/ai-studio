@@ -51,7 +51,7 @@ const CursorMockup = () => {
     setPrompt('');
     setChatHistory(prev => [...prev, { role: 'user', content: userPrompt }]);
     try {
-      const response = await fetch('http://localhost:8000/api/llm/chat', {
+      const response = await fetch('/api/llm/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -82,7 +82,7 @@ const CursorMockup = () => {
     setIsStreamlitLoading(true);
     setIsPreviewOpen(true);
     try {
-      const response = await fetch('http://localhost:8000/api/streamlit/run', {
+      const response = await fetch('/api/streamlit/run', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code })
       });
       if (!response.ok) throw new Error(`Failed: ${response.status}`);
@@ -99,7 +99,7 @@ const CursorMockup = () => {
 
   const handleStopStreamlit = async () => {
     try {
-      await fetch('http://localhost:8000/api/streamlit/stop', { method: 'POST' });
+      await fetch('/api/streamlit/stop', { method: 'POST' });
       setStreamlitRunning(false);
       setStreamlitUrl('');
       setIsStreamlitLoading(false);
@@ -141,7 +141,7 @@ const CursorMockup = () => {
     const timer = setTimeout(async () => {
       setSaveStatus('saving');
       try {
-        const response = await fetch('http://localhost:8000/api/streamlit/save', {
+        const response = await fetch('/api/streamlit/save', {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ code })
         });
         if (!response.ok) throw new Error(`Failed: ${response.status}`);
