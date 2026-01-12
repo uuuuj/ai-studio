@@ -10,7 +10,7 @@ CODEBASE_GUIDE.md
 .Python
 build/
 develop-eggs/
-dist/
+/dist/
 downloads/
 eggs/
 .eggs/
@@ -219,3 +219,6 @@ app.py
 # Test files
 test.jsx
 test_*.py
+
+# Claude Code temp files
+tmpclaude*
