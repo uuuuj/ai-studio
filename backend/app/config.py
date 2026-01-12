@@ -33,10 +33,10 @@ class Settings(BaseSettings):
     MSSQL_DATABASE: Optional[str] = None
     MSSQL_USERNAME: Optional[str] = None
     MSSQL_PASSWORD: Optional[str] = None
-    MSSQL_DRIVER: str = "{ODBC Driver 17 for SQL Server}"
+    MSSQL_DRIVER: str = "{ODBC Driver 18 for SQL Server}"
 
     class Config:
-        env_file = ".env"
+        env_file = ".env.ai_studio"
         case_sensitive = True
 
 

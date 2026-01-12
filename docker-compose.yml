@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ai-studio-backend
+    ports:
+      - "8080:8080"
+      - "8501:8501"
+    volumes:
+      - ./.env.ai_studio:/app/.env.ai_studio:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - ai-studio-network
+
+  frontend:
+    build:
+      context: ./cursor-mockup
+      dockerfile: Dockerfile
+    container_name: ai-studio-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - ai-studio-network
+
+networks:
+  ai-studio-network:
+    driver: bridge
